@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for file in ./tmp/in/*
+
+do
+  
+  gzip $file
+  mv $file ./tmp/out
+
+done
