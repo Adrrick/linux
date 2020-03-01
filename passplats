@@ -1,5 +1,10 @@
 #!/bin/bash
 
-gzip -r tmp/in
+(
+	flock -xn 22
+	trap 'rm /var/lock/lockfile'
 
-mv -v tmp/in/* tmp/out
+	gzip -r tmp/in
+
+	mv -v tmp/in/* tmp/out
+) 22>/var/lock/lockfile
