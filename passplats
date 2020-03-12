@@ -1,10 +1,14 @@
 #!/bin/bash
 
-(
-	flock -xn 22
-	trap 'rm /var/lock/lockfile'
+lock=tmp/out/lock
 
-	gzip -r tmp/in
+if [ -f $lock ]; then
+	echo "22"
+	exit
 
-	mv -v tmp/in/* tmp/out
-) 22>/var/lock/lockfile
+else
+	touch tmp/out/lock	
+	gzip tmp/in/*
+	mv tmp/in/* tmp/out
+	rm tmp/out/lock
+fi
