@@ -3,8 +3,7 @@
 lock=tmp/out/lock
 
 if [ -f $lock ]; then
-	echo "22"
-	exit
+	exit 22
 
 else
 	touch tmp/out/lock	
