@@ -1,13 +1,13 @@
 #!/bin/bash
 
-lock=tmp/out/lock
+lock=/tmp/out/lock
 
 if [ -f $lock ]; then
 	exit 22
 
 else
-	touch tmp/out/lock	
-	gzip tmp/in/*
-	mv tmp/in/* tmp/out
-	rm tmp/out/lock
+	touch /tmp/out/lock	
+	gzip /tmp/in/*
+	mv /tmp/in/* /tmp/out
+	rm /tmp/out/lock
 fi
