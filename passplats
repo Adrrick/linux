@@ -2,12 +2,17 @@
 
 lock=/tmp/out/lock
 
-if [ -f $lock ]; then
+if [ -f $lock ]; then	
 	exit 22
 
 else
-	touch /tmp/out/lock	
-	gzip /tmp/in/*
-	mv /tmp/in/* /tmp/out
+	touch /tmp/out/lock
+	
+	for file in /tmp/in/*
+	do
+		gzip $file
+		mv ${file}.gz /tmp/out
+	done
+
 	rm /tmp/out/lock
 fi
